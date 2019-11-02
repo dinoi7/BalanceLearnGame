@@ -22,15 +22,18 @@ KetaiSensor sensor;
 WebsocketClient wsc;
 
 float myAccelerometerX, myAccelerometerY, myAccelerometerZ;
-int x, y, p; 
+int x, y, p;
+int xpress, ypress;
 int connected;
 String Messg;
 String myIPAddress; 
+String serverreply;
 String remoteAddress = "172.16.247.1";
 // PC:                 "192.168.30.207";
 // SmartPhone Sony:    "192.168.30.238";
 // SmartPhone Samsung: "192.168.30.196";
 
+// SETUP
 void setup() {
   println("startup");
   orientation(PORTRAIT);
@@ -42,22 +45,19 @@ void setup() {
   print("My IP: ");
   println(myIPAddress);
   
-  try{
-//  wsc= new WebsocketClient(this, "ws://192.168.33.105:8080");
-//  connected = 1;
-  }
-  catch (Exception e){
-    print("error");
-    connected = 0;
-  }
-  
   sensor = new KetaiSensor(this);
   sensor.start();
 }
 
+// DRAW
 void draw() {
   background(78, 93, 75);
 
+// Connect Button
+  rect(width/4, 20, width/2, 70);
+  text("Connect", width/2, 60);
+  
+// Infos
   text("Websocket_Gyro_Receive3.pde v.0.1\n" + "Remote Mouse Info: \n" +                          // 3
   "mouseX: " + x + "\n" +
     "mouseY: " + y + "\n" +
@@ -66,8 +66,11 @@ void draw() {
     "x: " + nfp(myAccelerometerX, 1, 3) + "\n" +
     "y: " + nfp(myAccelerometerY, 1, 3) + "\n" +
     "z: " + nfp(myAccelerometerZ, 1, 3) + "\n\n" +
+    "xpress / ypress" + xpress + " " + ypress + "\n\n" +
     "Local IP Address: \n" + myIPAddress + "\n\n" +
-    "Remote IP Address: \n" + remoteAddress, width/2, height/2);
+    "Remote IP Address: \n" + remoteAddress +
+    "Server Connected: \n" + connected +
+    "Server Reply: \n" + serverreply, width/2, height/2);
 
 // format Message to send
 if (connected == 1){
@@ -75,6 +78,13 @@ if (connected == 1){
   wsc.sendMessage( Messg );
 }
 
+}
+
+// Screen Interaction
+void update(int x, int y)
+{
+  xpress = x;
+  ypress = y;
 }
 
 // Accelerometer Event
@@ -85,6 +95,32 @@ void onAccelerometerEvent(float x, float y, float z)
   myAccelerometerZ = z;
 }
 
+void WebsocketConnect(){
+// Websocket connect
+  try{
+  wsc = new WebsocketClient(this, "ws://192.168.33.105:8080");
+  connected = 1;
+  }
+  catch (IllegalArgumentException e) {
+    print("error");
+    connected = 0;
+  }
+  catch (IllegalStateException e) {
+    print("error");
+    connected = 0;
+  } 
+    catch (Exception e) {
+    print("error");
+    connected = 0;
+  } 
+}
+
+// Webseocket event
 void webSocketEvent(String msg) {
-  println("event: "+msg);
+  serverreply = msg;
+  println(msg);
+
+//  "event":
+//  "REQUEST_TYPE"
+
 }
