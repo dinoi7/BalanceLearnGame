@@ -1,0 +1,36 @@
+{
+    "event": "LOGIN",
+    "data": {
+        "type": "SENSOR", /* or DISPALY */
+        "gameId": 123971239
+    }
+}
+
+{
+    "event": "SEND_DATA",
+    "data": {
+        "send": true,
+        "filter": true
+    }
+}
+
+{
+    "event": "SENSOR_DATA",
+    "data": {
+        "x": 10,
+        "y": 10,
+        "z": 10
+    }
+}
+
+{
+    "event": "INIT_DISPLAY",
+    "data": {
+        "host": "192.168.1.220",
+        "port": 8080
+    }
+}
+
+{
+    "event": ""
+}
