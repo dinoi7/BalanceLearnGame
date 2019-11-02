@@ -1,5 +1,13 @@
 {
-    "event": "LOGIN",
+    "event": "S_REQUEST_TYPE"
+}
+
+{
+    "event": "C_GET_GAMEID"
+}
+
+{
+    "event": "C_LOGIN",
     "data": {
         "type": "SENSOR", /* or DISPALY */
         "gameId": 123971239
@@ -7,7 +15,7 @@
 }
 
 {
-    "event": "SEND_DATA",
+    "event": "S_SEND_DATA",
     "data": {
         "send": true,
         "filter": true
@@ -15,7 +23,7 @@
 }
 
 {
-    "event": "SENSOR_DATA",
+    "event": "C_SENSOR_DATA",
     "data": {
         "x": 10,
         "y": 10,
@@ -24,13 +32,9 @@
 }
 
 {
-    "event": "INIT_DISPLAY",
+    "event": "S_INIT_DISPLAY",
     "data": {
         "host": "192.168.1.220",
         "port": 8080
     }
-}
-
-{
-    "event": ""
 }
