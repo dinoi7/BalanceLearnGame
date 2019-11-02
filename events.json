@@ -7,6 +7,13 @@
 }
 
 {
+    "event": "S_SET_GAMEID",
+    "data": {
+        "gameId": 2131313
+    }
+}
+
+{
     "event": "C_LOGIN",
     "data": {
         "type": "SENSOR", /* or DISPALY */
@@ -29,6 +36,19 @@
         "y": 10,
         "z": 10
     }
+}
+
+{
+    "event": "S_SENSOR_DATA",
+    "data": {
+        "x": 10,
+        "y": 10,
+        "z": 10
+    }
+}
+
+{
+    "event": "S_ERR_NO_DISPLAYS"
 }
 
 {
