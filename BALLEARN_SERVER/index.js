@@ -4,7 +4,7 @@ const WebSocket = require('ws');
 const config = require(__dirname + '/config.js');
 const print = require(__dirname + '/modules/print.js');
 const utils = require(__dirname + '/modules/utils.js');
-const event = require(__dirname + '/event.js');
+const event = require(__dirname + '/modules/event.js');
 const clients = require(__dirname + '/modules/clients.js');
 
 // set hostname
