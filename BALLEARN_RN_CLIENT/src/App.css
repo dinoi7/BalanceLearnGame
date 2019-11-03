@@ -1,0 +1,139 @@
+.App {
+  text-align: center;
+}
+
+.item1 { grid-area: lefttop; }
+.item2 { grid-area: leftbottom; }
+.item3 { grid-area: righttop; }
+.item4 { grid-area: rightbottom; }
+.item5 { grid-area: header; }
+.item6 { grid-area: ball; }
+.item7 { grid-area: footer; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'lefttop lefttop header header header header header righttop righttop'
+    'lefttop lefttop ball ball ball ball ball righttop righttop'
+    'lefttop lefttop ball ball ball ball ball righttop righttop'
+    'leftbottom leftbottom ball ball ball ball ball rightbottom rightbottom' 
+    'leftbottom leftbottom ball ball ball ball ball rightbottom rightbottom'
+    'leftbottom leftbottom ball ball ball ball ball rightbottom rightbottom'
+    'footer footer footer footer footer footer footer footer footer';
+  grid-gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+  min-height: 100vh;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+
+.item51 { grid-area: lefttop; }
+.item52 { grid-area: leftbottom; }
+.item53 { grid-area: righttop; }
+.item54 { grid-area: rightbottom; }
+.item55 { grid-area: footer; }
+
+.grid-container5 {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'menu main main main right right'
+    'menu footer footer footer footer footer';
+  grid-gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+  min-height: 100vh;
+}
+
+.grid-container5 > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+.calibrationXElem {  
+  position: absolute;
+  background: orange;
+  width: 1px;
+  height: 1px;
+  left: 5px;
+  top: 5px;
+}
+.calibrationYElem {  
+  position: absolute;
+  background: orange;
+  width: 1px;
+  height: 1px;
+  left: 200px;
+  top: 5px;
+}
+
+.currentPoint {
+  position: absolute;
+  background: red;
+  height: 25px;
+  width: 25px;
+
+}
+
+.dot {
+  position: absolute;  
+  left: 200px;
+  top: 200px;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  background: blue;
+}
+
+.squareLogoWrapper {
+  position: absolute;  
+  left: 200px;
+  top: 80px; 
+  background: white;
+}
+.squareLogo {    
+  background: red;
+  float: left;   
+}
+
+.ring-container {
+  position: relative;
+}
+
+.circle {
+  width: 15px;
+  height: 15px;
+  background-color: #62bd19;
+  border-radius: 50%;
+  position: absolute;
+  top: 23px;
+  left: 23px;
+}
+
+.ringring {
+  border: 3px solid #62bd19;
+  -webkit-border-radius: 30px;
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  -webkit-animation: pulsate 1s ease-out;
+  -webkit-animation-iteration-count: infinite; 
+  opacity: 0.0
+}
+@-webkit-keyframes pulsate {
+  0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
+  50% {opacity: 1.0;}
+  100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.0;}
+}
