@@ -122,7 +122,7 @@ class App extends Screen  {
   render() {
     const {connected} = this.props;
     
-    const connectedState = connected?'connected':'not connected';
+    //const connectedState = connected?'connected':'not connected';
     //console.log('connectedState= ', connectedState)
     return (
       <Router history={history}>    
@@ -130,11 +130,10 @@ class App extends Screen  {
         {this.renderWebSocketClient()}
         {this.renderTestButton()}        
         <div className="App">
-        <Route path="/" exact component={Home} />  
-        <Route path="/testscreen" exact component={TestScreen} />    
-        <Route path="/calibration" exact component={CalibrationScreen} />  
-        <Route path="/screen1" exact component={Screen1} />  
-             
+          <Route path="/" exact component={Screen1} />  
+          <Route path="/testscreen" exact component={TestScreen} />    
+          <Route path="/calibration" exact component={CalibrationScreen} />  
+          <Route path="/screen1" exact component={Screen1} />   
         </div>
       </Router>  
     );

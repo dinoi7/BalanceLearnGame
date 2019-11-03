@@ -7,8 +7,8 @@ class Screen extends Component  {
     constructor(props) {
         super(props);     
         this.state = {
-            width:  100,
-            height: 100,   
+            widthInit:  100,
+            heightInit: 100,   
         }      
     }
 
@@ -17,8 +17,8 @@ class Screen extends Component  {
         let update_height = window.innerHeight; //Math.round(update_width);
         const centerX = update_width/2;
         const centerY = update_height/2;
-        this.setState({ width: update_width,
-                        height: update_height, 
+        this.setState({ widthInit: update_width,
+                        heightInit: update_height, 
                         centerX, 
                         centerY });        
     }
@@ -33,12 +33,12 @@ class Screen extends Component  {
         window.removeEventListener("resize", this.updateDimensions.bind(this));
     }
   
-    sendMessage(message){
+    /*sendMessage(message){
         if(this.props.connected) {
           console.log('sending the message= ', message);
           this.props.refWebSocket.sendMessage(message);
         }
-    }
+    }*/
     render() {
         return null;
     }
