@@ -1,3 +1,4 @@
+const print = require(__dirname + '/print.js');
 const getRelativeValue = (x, y, z, ws) => {
     let { xmax, ymax, zmax, xmin, ymin, zmin } = ws.kallibValues;
     let bx = x < 0 ? -xmin : xmax;
@@ -14,7 +15,7 @@ const getRelativeValue = (x, y, z, ws) => {
 const handleDataFlow = (ws, displays, data) => {
     if (displays.length > 0) {
         let { x, y, z } = data;
-        let relativeValues = sensor.getRelativeValue(x, y, z, ws);
+        let relativeValues = getRelativeValue(x, y, z, ws);
         displays.forEach((display) => {
             display.send(JSON.stringify({
                 event: 'S_SENSOR_DATA',
@@ -28,12 +29,13 @@ const handleDataFlow = (ws, displays, data) => {
                 }
             }));
         })
-        print.debug(ws.id, `x=${x}, y=${y}, z=${z}`);
-        print.debug(ws.id, `\x1b[36mx=${relativeValues.x}, y=${relativeValues.y}, z=${relativeValues.z}\x1b[0m`);
     } else {
         // no connected displays stop sending data
         ws.send(JSON.stringify({ event: 'S_ERR_NO_DISPLAYS' }));
     }
+
+    print.debug(ws.id, `x=${x}, y=${y}, z=${z}`);
+    print.debug(ws.id, `\x1b[36mx=${relativeValues.x}, y=${relativeValues.y}, z=${relativeValues.z}\x1b[0m`);
 
     if (ws.kallib) {
         let { x, y, z } = data;

@@ -1,7 +1,9 @@
+const config = require('../config.js');
 const print = require(__dirname + '/print.js');
 const kallib = require(__dirname + '/kallib.js');
 const sensor = require(__dirname + '/sensor.js');
 const clients = require(__dirname + '/clients.js');
+const game = {id: "Test129837"};
 
 const handle = (wss, config, ws, message) => {
 
@@ -32,10 +34,12 @@ const handle = (wss, config, ws, message) => {
                 }));
             } else if (ws.type === 'SENSOR') {
                 // Kalib
-                kallib.start(ws);
-                setTimeout(() => {
-                    kallib.stop(ws);
-                }, 10000);
+                if (config.callib.autostart) {
+                    kallib.start(ws);
+                    setTimeout(() => {
+                        kallib.stop(ws);
+                    }, config.callib.time);
+                }  
             } else {
                 print.error(ws.id, `bad login type (${ws.type})`);
             }

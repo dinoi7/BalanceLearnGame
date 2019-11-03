@@ -34,34 +34,39 @@ const colors = {
 
 const debug = (id, message) => {
     if (config.debug) {
-        let d = moment().format("dd.mm.YYYY HH:mm:ss");
+        let d = moment().format("DD.MM.YYYY HH:mm:ss");
         console.log(`${colors.Reset}${d} - ${id}: ${colors.fg.Cyan}DEBUG${colors.Reset} ${message}`);
     }
 }
 
+const status = (id, name, value) => {
+    let d = moment().format("DD.MM.YYYY HH:mm:ss");
+    console.log(`${colors.Reset}${d} - ${id}: ${name} => ${value ? colors.fg.Green : colors.fg.Red}${value}${colors.Reset}`);
+}
+
 const info = (id, message) => {
-    let d = moment().format("dd.mm.YYYY HH:mm:ss");
-    console.log(`${colors.Reset}${d} - ${id}: ${message}`);
+    let d = moment().format("DD.MM.YYYY HH:mm:ss");
+    console.log(`${colors.Reset}${d} - ${id}: INFO ${message}`);
 }
 
 const warning = (id, message) => {
-    let d = moment().format("dd.mm.YYYY HH:mm:ss");
-    console.log(`{d} - ${id}: ${colors.fg.Yellow}$${message}${colors.Reset}`);
+    let d = moment().format("DD.MM.YYYY HH:mm:ss");
+    console.log(`${d} - ${id}: ${colors.fg.Yellow}WARRNING ${message}${colors.Reset}`);
 }
 
 const error = (id, message) => {
-    let d = moment().format("dd.mm.YYYY HH:mm:ss");
-    console.log(`${d} - ${id}: ${colors.fg.Red}${message}${colors.Reset}`);
+    let d = moment().format("DD.MM.YYYY HH:mm:ss");
+    console.log(`${d} - ${id}: ${colors.fg.Red}ERROR ${message}${colors.Reset}`);
 }
 
 const success = (id, message) => {
-    let d = moment().format("dd.mm.YYYY HH:mm:ss");
-    console.log(`${d} - ${id}: ${colors.fg.Green}${message}${colors.Reset}`);
+    let d = moment().format("DD.MM.YYYY HH:mm:ss");
+    console.log(`${d} - ${id}: ${colors.fg.Green}SUCCESS ${message}${colors.Reset}`);
 }
 
 const server = (message) => {
-    let d = moment().format("dd.mm.YYYY HH:mm:ss");
-    console.log(`${d} - SERVER: ${colors.fg.Magenta}${message}${colors.Reset}`);
+    let d = moment().format("DD.MM.YYYY HH:mm:ss");
+    console.log(`${d} - SERVER: ${colors.fg.Green}${message}${colors.Reset}`);
 }
 
-module.exports = { debug, info, warning, error, success, server };
+module.exports = { debug, status, info, warning, error, success, server };

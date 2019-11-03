@@ -15,6 +15,7 @@ const wss = new WebSocket.Server({
     clientTracking: true
 });
 print.server(`server running on ${config.hostname}:${config.port}`);
+print.status("SERVER", "Autostart callib", config.callib.autostart);
 
 wss.on('connection', (ws, req) => {
     // init client
