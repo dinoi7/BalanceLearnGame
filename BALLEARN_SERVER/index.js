@@ -3,7 +3,6 @@ const WebSocket = require('ws');
 
 const config = require(__dirname + '/config.js');
 const print = require(__dirname + '/modules/print.js');
-const utils = require(__dirname + '/modules/utils.js');
 const event = require(__dirname + '/modules/event.js');
 const clients = require(__dirname + '/modules/clients.js');
 
@@ -16,12 +15,12 @@ const wss = new WebSocket.Server({
     clientTracking: true
 });
 print.server(`server running on ${config.hostname}:${config.port}`);
+print.status("SERVER", "Autostart callib", config.callib.autostart);
 
 wss.on('connection', (ws, req) => {
     // init client
     clients.initClient(ws);
 
-    const event = require(__dirname + '/event.js');
     ws.on('message', (message) => {
         event.handle(wss, config, ws, message);
     });
