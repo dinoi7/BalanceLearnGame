@@ -113,7 +113,7 @@ if (nodispl){
 }
 
 // Infos
-
+/*
   text("BALLEARN_APP_ANDROID.pde v.0.1\n" + "Remote Mouse Info: \n" +                          // 3
   "mouseX: " + x + "\n" +
     "mouseY: " + y + "\n" +
@@ -134,7 +134,7 @@ if (nodispl){
     "Remote IP Address: \n" + remoteAddress + "\n" +
     "Server Connected: " + connected + "\n" +
     "Server Reply: \n" + serverreply, width/2, height/2);
-
+/*
 
 // format Message to send
 if ( mode == 'd'){
