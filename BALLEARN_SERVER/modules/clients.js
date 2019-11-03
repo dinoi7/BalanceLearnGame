@@ -1,3 +1,4 @@
+const utils = require(__dirname + '/utils.js');
 const getAllSensors = (wss) => {
     let sensors = [];
     wss.clients.forEach((ws) => {
