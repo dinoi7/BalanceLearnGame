@@ -41,7 +41,7 @@ const debug = (id, message) => {
 
 const status = (id, name, value) => {
     let d = moment().format("DD.MM.YYYY HH:mm:ss");
-    console.log(`${colors.Reset}${d} - ${id}: ${name} => ${value ? colors.fg.Green : colors.fg.Red}${value}${colors.Reset}`);
+    console.log(`${colors.Reset}${d} - ${id}: ${colors.fg.Magenta}${name}${colors.Reset} => ${value ? colors.fg.Green : colors.fg.Red}${value}${colors.Reset}`);
 }
 
 const info = (id, message) => {

@@ -32,6 +32,10 @@ const handle = (wss, config, ws, message) => {
                         gameId: ws.gameId
                     }
                 }));
+                
+                clients.getAllSensors(wss).forEach(sensor => {
+                    sensor.send(JSON.stringify({ event: 'S_DISPLAYS' }));
+                });
             } else if (ws.type === 'SENSOR') {
                 // Kalib
                 if (config.callib.autostart) {
@@ -46,8 +50,8 @@ const handle = (wss, config, ws, message) => {
 
             let displaysNum = clients.getAllDisplays(wss).length;
             let sensorNum = clients.getAllSensors(wss).length;
-            print.info("INFO", `DISPLAY_NUM=${displaysNum}`);
-            print.info("INFO", `SENSOR_NUM=${sensorNum}`);
+            print.info(ws.id, `DISPLAY_NUM=${displaysNum}`);
+            print.info(ws.id, `SENSOR_NUM=${sensorNum}`);
 
             break;
 

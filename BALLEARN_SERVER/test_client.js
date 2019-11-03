@@ -23,7 +23,7 @@ ws.on('message', (message) => {
   } else {
     console.log(`event: ${json.event}`);
   }
-  
+
 
   switch (json.event.toUpperCase()) {
     case 'S_REQUEST_TYPE':
@@ -35,7 +35,29 @@ ws.on('message', (message) => {
       test.port = data.port;
       console.log(JSON.stringify(test));
       break;
-  
+    case 'S_CALLIB':
+      if (json.data.active) {
+        let x = -8000;
+        let y = -8000;
+        let z = 0;
+        const i = setInterval(() => {
+          ws.send(JSON.stringify({ event: 'C_SENSOR_DATA', data: { x: x, y: y, z: z } }));
+          x = x + 2000;
+          y = y + 2000;
+          z = 0;
+        }, 500);
+        setTimeout(() => {
+          clearInterval(i);
+          console.log("send fake data");
+          setInterval(() => {
+            ws.send(JSON.stringify({ event: 'C_SENSOR_DATA', data: { x: x, y: y, z: z } }));
+            x = Math.random() * 0;
+            y = Math.random() * 1000 + 4000;
+          }, 1500);
+        }, 5000);
+      }
+      break;
+
     default:
       break;
   }
