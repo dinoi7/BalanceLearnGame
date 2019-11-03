@@ -38,6 +38,25 @@ class Calibration extends Screen  {
 
        
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        
+        const { widthInit, heightInit} = this.state;
+        if (prevProps.navigationHeight !== this.props.navigationHeight && this.props.navigationHeight!==0) {
+            //console.log('this.props.navigationHeight', this.props.navigationHeight);
+            //console.log('heightInit', heightInit);
+            const width = widthInit;
+            const height = heightInit - this.props.navigationHeight;
+
+            const centerX = width/2;
+            const centerY = height/2;
+            const top = this.props.navigationHeight;
+            //console.log('top_update', top)
+            this.setState({width, height, centerX, centerY, top} );
+        }    
+
+    }
+    
     initLogo(logoJson) {
         var logo = JSON.parse(JSON.stringify(logoJson));
         logo.rows.forEach((row, i) => {
@@ -241,9 +260,7 @@ class Calibration extends Screen  {
             <div className="dot"></div>
            
             {this.renderLogo()}
-           
-            
-            
+                            
             
             </React.Fragment>);
     }
@@ -265,7 +282,6 @@ class Calibration extends Screen  {
         const hy = `${this.state.HY}px`;
         const lefty = `${centerX-this.state.WY/2}px`;
         const topy = `${centerY-this.state.HY/2}px`;
-
 
         //console.log('leftx', leftx)
         //console.log('topx', topx)

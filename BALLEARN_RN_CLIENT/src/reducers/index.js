@@ -2,7 +2,8 @@ import { combineReducers } from 'redux'
 
 import { SET_CONNECTION_STATE,
     SET_WEBSOCKET_REF,
-    SET_POSITION
+    SET_POSITION,
+    SET_NAVIGATION_HEIGHT
      } from '../actions/types'
 
 
@@ -41,11 +42,20 @@ const positionReducer = (state=INITIAL_STATE_POSITION, action) => {
     }
 };
 
+const navigationHeightReducer = (state=0, action) => {    
+    switch(action.type) {
+    case SET_NAVIGATION_HEIGHT:
+        return action.payload;
+    default:
+        return state;
+    }
+};
 
 
 
 export default combineReducers( {
     connected: connectionReducer,   
     refWebSocket: websocketRefReducer,
-    position: positionReducer
+    position: positionReducer,
+    navigationHeight: navigationHeightReducer
 })

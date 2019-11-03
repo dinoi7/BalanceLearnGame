@@ -13,8 +13,17 @@ class Home extends Component  {
         this.props.history.push('/howitworks') 
     }
 
+    render() {
+        return (<div style={{textAlign:'center', verticalAlign:'midle'}}> 
+        <p>HOME </p>
 
-    render() {   
+        <div className="test">           
+            <span className="testText">
+                yet another text content that should be centered vertically</span>
+            </div>
+        </div>)
+    }
+    render2() {   
         return (
             <React.Fragment>
                 <div className="grid-container">
