@@ -46,12 +46,12 @@ class Calibration extends Screen  {
             })
         })
 
-        console.log('initlogo', logo);
+        //console.log('initlogo', logo);
         return logo;
     }
 
     simulate = ()=> {
-        console.log('simulate')
+        //console.log('simulate')
         const plus = 10;
         const time = 100;       
 
@@ -61,10 +61,7 @@ class Calibration extends Screen  {
           setTimeout(
             () => {             
               if(this.state.simulationActive===true) {
-                  const simulationActive = ((this.state.WX+plus)<this.state.width ||
-                    (this.state.HY+plus)<this.state.height);
                 this.setState({
-                    //simulationActive,
                     WX: this.state.WX+plus,
                     HY: this.state.HY+plus}, ()=>this.simulate() ) ;
                  
@@ -158,7 +155,7 @@ class Calibration extends Screen  {
 
 
     onClickSimulation() {
-        console.log('onClickSimulation')
+        //console.log('onClickSimulation')
         if(this.state.simulationActive===false)
             this.setState({ simulationActive: true, 
                 WX : 100,
@@ -204,7 +201,7 @@ class Calibration extends Screen  {
         )
     }
     renderStartSimulationButton() {
-        console.log('renderStartSimulationButton');
+        //console.log('renderStartSimulationButton');
         if(this.state.simulationActive===false)
             return (<button style={{fontSize:'40px'}}
                 onClick={this.onClickSimulation()} >
