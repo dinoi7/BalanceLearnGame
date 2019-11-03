@@ -12,7 +12,10 @@ import CalibrationScreen from './screens/Calibration'
 import Screen1 from './screens/Screen1'
 import Screen from './screens/Screen'
 import {  WEB_SOCKET_PORT, WEB_SOCKET_IP } from './helpers/const';
-import {setConnectionState, setWebSocketRef, sendMessage} from './actions/connection'
+import {setConnectionState, 
+        setWebSocketRef, 
+        sendMessage, 
+        setPosition } from './actions/connection'
 import {isRequestTypeMessage, 
   isRetrieveGameIDMessage, 
   retrieveGameID,
@@ -34,7 +37,7 @@ class App extends Screen  {
 
   onOpen() {
     const {connected} = this.props;
-    console.log('connection opend')
+    //console.log('connection opend')
     //this.setState({connection:true})
     if(!connected)
       this.props.setConnectionState(true);
@@ -63,7 +66,7 @@ class App extends Screen  {
     // parse the gameId 
     if(/*!this.state.gameId &&*/ isRetrieveGameIDMessage(payload))  {
       const gameId =  retrieveGameID(payload);
-      console.log('gameId recevied: ', gameId)
+      //console.log('gameId recevied: ', gameId)
       this.setState({gameId});
       this.props.sendMessage(createLoginMessage(gameId))
     }       
@@ -72,6 +75,7 @@ class App extends Screen  {
       const position = payload.data;
       console.log('position recevied: ', position);
       this.setState({position});
+      this.props.setPosition(position);
     }      
     
   }
@@ -79,7 +83,7 @@ class App extends Screen  {
   renderWebSocketClient() {
 
     const url = `ws://${WEB_SOCKET_IP}:${WEB_SOCKET_PORT}/ `;
-    console.log('url', url)
+    //console.log('url', url)
     return ( <Websocket 
             debug={true} 
             reconnect={true}
@@ -119,7 +123,7 @@ class App extends Screen  {
     const {connected} = this.props;
     
     const connectedState = connected?'connected':'not connected';
-    console.log('connectedState= ', connectedState)
+    //console.log('connectedState= ', connectedState)
     return (
       <Router history={history}>    
         <Navigation data-test="navigation"/>  
@@ -148,4 +152,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, 
       {  setConnectionState,
         setWebSocketRef,
-        sendMessage })(App);
+        sendMessage, 
+        setPosition })(App);

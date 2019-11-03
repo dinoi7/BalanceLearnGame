@@ -34,7 +34,7 @@ var QRCode = require('qrcode.react');
     }
 
     onOpen() {
-        console.log('connection opend')
+        //console.log('connection opend')
         this.setState({connection:true})
     }
     onClose() {
@@ -61,7 +61,7 @@ var QRCode = require('qrcode.react');
       // parse the gameId 
       if(/*!this.state.gameId &&*/ isRetrieveGameIDMessage(payload))  {
         const gameId =  retrieveGameID(payload);
-        console.log('gameId recevied: ', gameId)
+        //console.log('gameId recevied: ', gameId)
         this.setState({gameId});
         this.sendMessage(createLoginMessage(gameId))
       }       
@@ -181,7 +181,9 @@ var QRCode = require('qrcode.react');
   const mapStateToProps = (state) => {  
     return {
       connected: state.connected,
-      refWebSocket: state.refWebSocket
+      refWebSocket: state.refWebSocket,
+      position: state.position,
+
     }
   }
   export default connect(mapStateToProps, 
